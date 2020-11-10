@@ -7,12 +7,12 @@ class Combination {
         colors = new Color[4];
     }
     
-    public void show () {
-        Console console = new Console();		
-
-		for (int i = 0;i < this.colors.length; i++) {
-            console.out(this.colors[i].getColor());
+    public String show () {
+        String combination = "";
+        for (int i = 0; i < this.colors.length; i++) {
+            combination += colors[i].getColor();						            
         }
+        return combination;
     }
 
 	public boolean isValid(String proposal) {

@@ -6,7 +6,6 @@ class SecretCombination extends Combination {
 	public SecretCombination() {
         super();
         this.autoGenerate();
-        //this.showUnepcrytp();
     }
 
     private void autoGenerate() {
@@ -37,12 +36,11 @@ class SecretCombination extends Combination {
         return false;
     }
 
-    public void show() {
-        Console console = new Console();
-        console.out("xxxx");
+    public String show() {
+        return "xxxx";
     }
 
-    private void showUnepcrytp() {
-        super.show();
+    public String showUnepcrytp() {
+        return super.show();
     }
 }

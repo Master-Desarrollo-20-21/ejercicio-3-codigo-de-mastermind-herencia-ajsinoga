@@ -46,9 +46,9 @@ public class Result {
         return result;
     }
 
-	public void show(int attempts, ProposedCombination[] proposedCombinations) {
+	public void show(int attempts, SecretCombination secretCombination, ProposedCombination[] proposedCombinations) {
         Console console = new Console();
-        console.out((attempts + 1) + " attemps(s):\nxxxx\n" + proposedCombinations[attempts].proposal() 
+        console.out((attempts + 1) + " attemps(s):\n" + secretCombination.show() + "\n" + proposedCombinations[attempts].show() 
                     + " --> " + this.numberOfHints(BLACK) + " blacks and " + this.numberOfHints(WHITE) + " whites\n");
 	}
 }

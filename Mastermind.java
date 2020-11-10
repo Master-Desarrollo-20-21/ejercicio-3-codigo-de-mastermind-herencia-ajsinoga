@@ -13,25 +13,26 @@ class Mastermind {
     }
 
     public void play() {
-        this.showInfo();
+        this.showInfo(this.secretCombination);
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
             this.results[this.attempts] = new Result();
             this.results[this.attempts].check(this.secretCombination, this.proposedCombinations[attempts]);
-            this.results[this.attempts].show(attempts, proposedCombinations);
+            this.results[this.attempts].show(attempts, this.secretCombination, this.proposedCombinations);
             this.attempts++;
         } while (!this.isComplete(attempts) && !this.results[this.attempts-1].isWinner());
     }
 
-    private void showInfo() {
+    private void showInfo(SecretCombination secretCombination) {
         Console console = new Console();
-        console.out("\n ----- MASTERMIND -----\n" + "0 attemps(s):\nxxxx\n");
+        console.out("\n ----- MASTERMIND -----\n" + "0 attemps(s):\n" + secretCombination.show() + "\n");
     }
 
     private boolean isComplete(int attempts) {
         Console console = new Console();
         if (attempts > 9) {
             console.out("You've lost!!! :-(\n");
+            console.out("Secrete combination was: " + this.secretCombination.showUnepcrytp() + "\n");
             return true;
         }
         return false;

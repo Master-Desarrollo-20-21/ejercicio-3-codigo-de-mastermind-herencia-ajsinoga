@@ -17,12 +17,4 @@ class ProposedCombination extends Combination{
             this.colors[i] = Color.valueOf(proposal.charAt(i));						            
         }    
     }
-
-    public String proposal() {
-        String proposal = "";
-        for (int i = 0; i < this.colors.length; i++) {
-            proposal += colors[i].getColor();						            
-        }
-        return proposal;
-    }
 }
