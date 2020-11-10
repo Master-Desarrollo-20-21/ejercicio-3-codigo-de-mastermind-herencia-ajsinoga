@@ -1,30 +1,57 @@
 class Mastermind {
 
-    private Game game;
+    private SecretCombination secretCombination;
+    private ProposedCombination[] proposedCombinations;
+    private Result[] results;
+    private int attempts;
 
     public Mastermind(){
-        this.game = new Game();
+        this.attempts = 0;
+        this.secretCombination = new SecretCombination();
+        this.proposedCombinations = new ProposedCombination[10];
+        this.results = new Result[10];
     }
 
-    private void play() {
+    public void play() {
+        this.showInfo();
         do {
-            this.game.play();
-        } while (this.isResumed());
+            this.proposedCombinations[this.attempts] = new ProposedCombination();
+            this.results[this.attempts] = new Result();
+            this.results[this.attempts].check(this.secretCombination, this.proposedCombinations[attempts]);
+            this.results[this.attempts].show(attempts, proposedCombinations);
+            this.attempts++;
+        } while (!this.isComplete(attempts) && !this.results[this.attempts-1].isWinner());
+    }
+
+    private void showInfo() {
+        Console console = new Console();
+        console.out("\n ----- MASTERMIND -----\n" + "0 attemps(s):\nxxxx\n");
+    }
+
+    private boolean isComplete(int attempts) {
+        Console console = new Console();
+        if (attempts > 9) {
+            console.out("You've lost!!! :-(\n");
+            return true;
+        }
+        return false;
     }
 
     private boolean isResumed() {
         String answer;
         Console console = new Console();
         do {
-            answer = console.readString("¿Quieres continuar? (s/n): ");
-        } while (!answer.equals("s") && !answer.equals("n"));
+            answer = console.readString("RESUME? (y/n): ");
+        } while (!answer.equals("y") && !answer.equals("n"));
 
-        return answer.equals("s");
+        return answer.equals("y");
     }
 
     public static void main(String args[]) {
-        new Mastermind().play();
+        Mastermind game;
+        do {            
+            game = new Mastermind();
+            game.play();
+        } while (game.isResumed());
     }
-
-
 }
