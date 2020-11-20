@@ -3,10 +3,9 @@ class ProposedCombination extends Combination{
 
     public ProposedCombination() {
         super();
-        this.make();
 	}
 
-	private void make() {
+	public void propose() {
         String proposal;
 		Console console = new Console();		
         do {

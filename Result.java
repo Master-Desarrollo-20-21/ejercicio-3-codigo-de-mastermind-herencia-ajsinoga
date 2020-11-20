@@ -10,7 +10,7 @@ public class Result {
         this.results = new int[] { -1, -1, -1, -1 };
     }
 
-	public void check(SecretCombination secretCombination, ProposedCombination proposedCombination) {
+	public void verify(SecretCombination secretCombination, ProposedCombination proposedCombination) {
         for (int i = 0; i < secretCombination.colors.length; i++) {
             Color goal = secretCombination.colors[i];
             for (int j = 0; j < proposedCombination.colors.length; j++) {
