@@ -1,5 +1,5 @@
 
-class Combination {
+abstract class Combination {
 
     protected Color[] colors;
 
