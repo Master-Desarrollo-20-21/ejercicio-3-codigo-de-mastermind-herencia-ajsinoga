@@ -5,7 +5,7 @@ class ProposedCombination extends Combination{
         super();
 	}
 
-	public void propose() {
+	public void read() {
         String proposal;
 		Console console = new Console();		
         do {

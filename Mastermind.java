@@ -16,7 +16,7 @@ class Mastermind {
         this.showInfo(this.secretCombination);
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
-            this.proposedCombinations[this.attempts].propose();
+            this.proposedCombinations[this.attempts].read();
             this.results[this.attempts] = new Result();
             this.results[this.attempts].verify(this.secretCombination, this.proposedCombinations[attempts]);
             this.results[this.attempts].show(attempts, this.secretCombination, this.proposedCombinations);
