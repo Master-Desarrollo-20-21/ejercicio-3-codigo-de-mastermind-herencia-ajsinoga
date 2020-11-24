@@ -13,7 +13,7 @@ class SecretCombination extends Combination {
         String proposal = "";        
         Color candidate;      
         do {                
-            candidate = getCandidateColor();            
+            candidate = getCandidate();            
             if (isUnique(candidate, proposal)) {
                 proposal = proposal + candidate.getColor();
             }                
@@ -22,7 +22,7 @@ class SecretCombination extends Combination {
         this.saveCombination(proposal);
     }
     
-    private Color getCandidateColor() {
+    private Color getCandidate() {
         Random random = new Random(); 
         return ALLOWEDCOLORS[random.nextInt(6)];
     }
