@@ -12,22 +12,30 @@ public class Result {
 
 	public void verify(SecretCombination secretCombination, ProposedCombination proposedCombination) {
         for (int i = 0; i < secretCombination.colors.length; i++) {
-            Color goal = secretCombination.colors[i];
+            Color currentGoal = secretCombination.colors[i];
             for (int j = 0; j < proposedCombination.colors.length; j++) {
-                if (proposedCombination.colors[j] == goal) {
+                if (proposedCombination.colors[j].equals(currentGoal)) {
                     if (i == j) {
-                        this.results[i] = 1;
+                        this.addBlackBall(i); 
                         break;
                     } 
                     else {
-                        this.results[i] = 0;
+                        this.addWhiteBall(i); 
                     }                   
                 }
             }
         }
-	}
+    }
 
-	public boolean isWinner() {
+    private void addBlackBall(int position) {
+        this.results[position] = BLACK;
+    }
+
+	private void addWhiteBall(int position) {
+        this.results[position] = WHITE;
+    }
+
+    public boolean isWinner() {
         Console console = new Console();
         if (this.numberOfHints(BLACK) == 4) {
             console.out("You've won!!! ;-)\n");
@@ -36,6 +44,14 @@ public class Result {
         return false;
 	}
 
+	public int numberOfBlacks() {
+		return numberOfHints(BLACK);
+	}
+
+	public int numberOfWhites() {
+		return numberOfHints(WHITE);
+    }
+    
     private int numberOfHints(int color) {
         int result = 0;
         for (int i = 0; i < results.length; i++) {
@@ -45,10 +61,4 @@ public class Result {
         }
         return result;
     }
-
-	public void show(int attempts, SecretCombination secretCombination, ProposedCombination[] proposedCombinations) {
-        Console console = new Console();
-        console.out((attempts + 1) + " attemps(s):\n" + secretCombination.show() + "\n" + proposedCombinations[attempts].show() 
-                    + " --> " + this.numberOfHints(BLACK) + " blacks and " + this.numberOfHints(WHITE) + " whites\n");
-	}
 }

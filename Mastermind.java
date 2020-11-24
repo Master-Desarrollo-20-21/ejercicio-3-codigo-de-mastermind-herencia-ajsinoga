@@ -12,28 +12,34 @@ class Mastermind {
         this.results = new Result[10];
     }
 
-    public void play() {
-        this.showInfo(this.secretCombination);
+    public void play() {  
+        this.showTittle();      
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
-            this.proposedCombinations[this.attempts].read();
+            this.proposedCombinations[this.attempts].propose();
             this.results[this.attempts] = new Result();
             this.results[this.attempts].verify(this.secretCombination, this.proposedCombinations[attempts]);
-            this.results[this.attempts].show(attempts, this.secretCombination, this.proposedCombinations);
+            this.showResult(this.results[this.attempts]);
             this.attempts++;
         } while (!this.isComplete(attempts) && !this.results[this.attempts-1].isWinner());
     }
 
-    private void showInfo(SecretCombination secretCombination) {
+    private void showTittle() {
         Console console = new Console();
-        console.out("\n ----- MASTERMIND -----\n" + "0 attemps(s):\n" + secretCombination.show() + "\n");
+        console.out("\n ----- MASTERMIND -----\n" + this.attempts + " attemps(s):\n" + this.secretCombination.show() + "\n");
+    }
+
+    private void showResult(Result proposal) {
+        Console console = new Console();
+        console.out((this.attempts + 1) + " attemps(s):\n" + this.secretCombination.show() + "\n" + this.proposedCombinations[this.attempts].show() 
+                    + " --> " + proposal.numberOfBlacks() + " blacks and " + proposal.numberOfWhites() + " whites\n");
     }
 
     private boolean isComplete(int attempts) {
         Console console = new Console();
         if (attempts > 9) {
             console.out("You've lost!!! :-(\n");
-            console.out("Secrete combination was: " + this.secretCombination.showUnepcrytp() + "\n");
+            console.out("Secrete combination was: " + this.secretCombination.showUnencrypted() + "\n");
             return true;
         }
         return false;
@@ -51,7 +57,7 @@ class Mastermind {
 
     public static void main(String args[]) {
         Mastermind game;
-        do {            
+        do {                       
             game = new Mastermind();
             game.play();
         } while (game.isResumed());

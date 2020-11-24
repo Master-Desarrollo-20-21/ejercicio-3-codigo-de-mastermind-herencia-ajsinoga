@@ -40,7 +40,7 @@ class SecretCombination extends Combination {
         return "xxxx";
     }
 
-    public String showUnepcrytp() {
+    public String showUnencrypted() {
         return super.show();
     }
 }
