@@ -10,10 +10,8 @@ class ProposedCombination extends Combination{
 		Console console = new Console();		
         do {
             proposal = console.readString("Propose a combination: ");
-		} while (!super.isValid(proposal)); 
+        } while (!this.isValid(proposal)); 
         
-        for (int i = 0; i < proposal.length(); i++) {
-            this.colors[i] = Color.valueOf(proposal.charAt(i));						            
-        }    
+        this.saveCombination(proposal);
     }
 }

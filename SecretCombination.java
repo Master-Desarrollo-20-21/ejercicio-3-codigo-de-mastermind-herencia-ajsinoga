@@ -2,6 +2,7 @@ import java.util.Random;
 
 class SecretCombination extends Combination {
 
+    private final Color[] ALLOWEDCOLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK, Color.ORANGE}; 
 
 	public SecretCombination() {
         super();
@@ -9,38 +10,41 @@ class SecretCombination extends Combination {
     }
 
     private void autoGenerate() {
-        Random random = new Random();
-        String colors = "rgbypo";
-        int[] positions = new int[4];
-        int numberOfColors = 0;
-        int position = 0;           
-        for(int i = 0; i < this.colors.length; i++) {            
-            do {
-                position = random.nextInt(6);
-                if (!this.colorAlreadySelected(position, numberOfColors, positions)) {
-                    this.colors[i] = Color.valueOf(colors.charAt(position));
-                    positions[numberOfColors] = position;
-                    numberOfColors++;
-                    break;
-                }
-            } while (numberOfColors < 4);
-        } 
+        String proposal = "";        
+        Color candidate;      
+        do {                
+            candidate = getCandidateColor();            
+            if (isUnique(candidate, proposal)) {
+                proposal = proposal + candidate.getColor();
+            }                
+        } while (!this.isValid(proposal));
+
+        this.saveCombination(proposal);
     }
     
-    private boolean colorAlreadySelected(int position, int numberOfColors, int[] positions) {
-        for (int i = 0; i < numberOfColors; i++) {
-            if (positions[i] == position) {
-                return true;
+    private Color getCandidateColor() {
+        Random random = new Random(); 
+        return ALLOWEDCOLORS[random.nextInt(6)];
+    }
+
+    private boolean isUnique(Color candidate, String proposal) {
+        for (int i = 0; proposal.length() > 0 && i < proposal.length(); i++) {
+            if (candidate.getColor() == proposal.charAt(i)) {
+                return false;
             }
         }
-        return false;
+        return true;
+    }
+
+    public boolean isValid(String proposal) {
+        return proposal.length() == this.size();
     }
 
     public String show() {
         return "xxxx";
     }
 
-    public String showUnencrypted() {
+    public String showDecrypted() {
         return super.show();
     }
 }

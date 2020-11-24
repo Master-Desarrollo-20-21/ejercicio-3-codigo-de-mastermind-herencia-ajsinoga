@@ -11,10 +11,10 @@ public class Result {
     }
 
 	public void verify(SecretCombination secretCombination, ProposedCombination proposedCombination) {
-        for (int i = 0; i < secretCombination.colors.length; i++) {
+        for (int i = 0; i < secretCombination.size(); i++) {
             Color currentGoal = secretCombination.colors[i];
-            for (int j = 0; j < proposedCombination.colors.length; j++) {
-                if (proposedCombination.colors[j].equals(currentGoal)) {
+            for (int j = 0; j < proposedCombination.size(); j++) {
+                if (proposedCombination.colors[j] == currentGoal) {
                     if (i == j) {
                         this.addBlackBall(i); 
                         break;
@@ -35,9 +35,13 @@ public class Result {
         this.results[position] = WHITE;
     }
 
+    private int size() {
+        return this.results.length;
+    }
+
     public boolean isWinner() {
         Console console = new Console();
-        if (this.numberOfHints(BLACK) == 4) {
+        if (this.numberOfHints(BLACK) == this.size()) {
             console.out("You've won!!! ;-)\n");
             return true;
         }
@@ -54,7 +58,7 @@ public class Result {
     
     private int numberOfHints(int color) {
         int result = 0;
-        for (int i = 0; i < results.length; i++) {
+        for (int i = 0; i < this.size(); i++) {
             if (results[i] == color) {
                 result++;
             }

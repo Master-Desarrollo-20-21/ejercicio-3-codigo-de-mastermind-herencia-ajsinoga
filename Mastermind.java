@@ -39,7 +39,7 @@ class Mastermind {
         Console console = new Console();
         if (attempts > 9) {
             console.out("You've lost!!! :-(\n");
-            console.out("Secrete combination was: " + this.secretCombination.showUnencrypted() + "\n");
+            console.out("Secrete combination was: " + this.secretCombination.showDecrypted() + "\n");
             return true;
         }
         return false;

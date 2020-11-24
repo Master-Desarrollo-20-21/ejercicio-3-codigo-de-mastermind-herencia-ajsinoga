@@ -26,8 +26,4 @@ enum Color
     public char getColor() {
         return this.keyword;
     }
-
-    public boolean equals(Color color) {
-        return this.getColor() == color.getColor();
-    }
 }

@@ -1,19 +1,30 @@
 
 abstract class Combination {
 
+    private final int NUMBEROFCOLORS = 4;
     protected Color[] colors;
 
 	public Combination() {
-        colors = new Color[4];
+        colors = new Color[NUMBEROFCOLORS];
+    }
+
+    public int size() {
+        return this.colors.length;
     }
     
     public String show () {
         String combination = "";
-        for (int i = 0; i < this.colors.length; i++) {
+        for (int i = 0; i < this.size(); i++) {
             combination += colors[i].getColor();						            
         }
         return combination;
     }
+
+    public void saveCombination(String proposal) {
+        for (int i = 0; i < this.size(); i++) {
+            this.colors[i] = Color.valueOf(proposal.charAt(i));
+        }
+    }    
 
 	public boolean isValid(String proposal) {
         if (!this.isValidLength(proposal.length())) {
@@ -27,7 +38,7 @@ abstract class Combination {
 
     private boolean isValidLength(int length) {
         Console console = new Console();
-        if (length != this.colors.length) {
+        if (length != this.size()) {
             console.out("Wrong proposed combination length\n");
             return false;
         }
