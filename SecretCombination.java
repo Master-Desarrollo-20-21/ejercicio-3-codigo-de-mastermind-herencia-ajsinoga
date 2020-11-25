@@ -5,11 +5,10 @@ class SecretCombination extends Combination {
     private final Color[] ALLOWEDCOLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK, Color.ORANGE}; 
 
 	public SecretCombination() {
-        super();
-        this.autoGenerate();
+        super();        
     }
 
-    private void autoGenerate() {
+    public void generate() {
         String proposal = "";        
         Color candidate;      
         do {                

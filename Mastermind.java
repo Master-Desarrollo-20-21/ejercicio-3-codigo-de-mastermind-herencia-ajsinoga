@@ -12,8 +12,9 @@ class Mastermind {
         this.results = new Result[10];
     }
 
-    public void play() {  
-        this.showTittle();      
+    public void play() {          
+        this.secretCombination.generate();      
+        this.showTittle();
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
             this.proposedCombinations[this.attempts].propose();
