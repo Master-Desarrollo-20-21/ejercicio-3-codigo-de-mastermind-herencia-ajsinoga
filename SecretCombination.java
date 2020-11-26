@@ -8,7 +8,8 @@ class SecretCombination extends Combination {
         super();        
     }
 
-    public void generate() {
+    @Override
+    public String generate() {
         String proposal = "";        
         Color candidate;      
         do {                
@@ -16,9 +17,9 @@ class SecretCombination extends Combination {
             if (isUnique(candidate, proposal)) {
                 proposal = proposal + candidate.getColor();
             }                
-        } while (!this.isValid(proposal));
+        } while (proposal.length() != this.size());
 
-        this.saveCombination(proposal);
+        return proposal;
     }
     
     private Color getCandidate() {
@@ -33,10 +34,6 @@ class SecretCombination extends Combination {
             }
         }
         return true;
-    }
-
-    public boolean isValid(String proposal) {
-        return proposal.length() == this.size();
     }
 
     public String show() {

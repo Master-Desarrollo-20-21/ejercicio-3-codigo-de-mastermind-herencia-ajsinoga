@@ -5,13 +5,9 @@ class ProposedCombination extends Combination{
         super();
 	}
 
-	public void propose() {
-        String proposal;
-		Console console = new Console();		
-        do {
-            proposal = console.readString("Propose a combination: ");
-        } while (!this.isValid(proposal)); 
-        
-        this.saveCombination(proposal);
+    @Override
+    public String generate() {
+        Console console = new Console();
+        return console.readString("Propose a combination: ");
     }
 }

@@ -20,6 +20,17 @@ abstract class Combination {
         return combination;
     }
 
+    public void propose() {
+        String proposal;		
+        do {
+            proposal = this.generate();            
+        } while (!this.isValid(proposal)); 
+        
+        this.saveCombination(proposal);
+    }
+
+    public abstract String generate();
+
     public void saveCombination(String proposal) {
         for (int i = 0; i < this.size(); i++) {
             this.colors[i] = Color.valueOf(proposal.charAt(i));

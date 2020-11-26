@@ -13,7 +13,7 @@ class Mastermind {
     }
 
     public void play() {          
-        this.secretCombination.generate();      
+        this.secretCombination.propose();      
         this.showTittle();
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
