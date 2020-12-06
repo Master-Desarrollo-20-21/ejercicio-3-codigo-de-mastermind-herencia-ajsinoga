@@ -5,14 +5,16 @@ public class Result {
     private static final int BLACK = 1;
     private static final int WHITE = 0;
     private int[] results;
+    private SecretCombination secretCombination;
 
-    public Result() {
+    public Result(SecretCombination secretCombination) {
         this.results = new int[] { -1, -1, -1, -1 };
+        this.secretCombination = secretCombination;
     }
 
-	public void verify(SecretCombination secretCombination, ProposedCombination proposedCombination) {
-        for (int i = 0; i < secretCombination.size(); i++) {
-            Color currentGoal = secretCombination.colors[i];
+	public void verify(ProposedCombination proposedCombination) {
+        for (int i = 0; i < this.secretCombination.size(); i++) {
+            Color currentGoal = this.secretCombination.colors[i];
             for (int j = 0; j < proposedCombination.size(); j++) {
                 if (proposedCombination.colors[j] == currentGoal) {
                     if (i == j) {

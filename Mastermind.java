@@ -18,8 +18,8 @@ class Mastermind {
         do {
             this.proposedCombinations[this.attempts] = new ProposedCombination();
             this.proposedCombinations[this.attempts].propose();
-            this.results[this.attempts] = new Result();
-            this.results[this.attempts].verify(this.secretCombination, this.proposedCombinations[attempts]);
+            this.results[this.attempts] = new Result(this.secretCombination);
+            this.results[this.attempts].verify(this.proposedCombinations[attempts]);
             this.showResult(this.results[this.attempts]);
             this.attempts++;
         } while (!this.isComplete(attempts) && !this.results[this.attempts-1].isWinner());
