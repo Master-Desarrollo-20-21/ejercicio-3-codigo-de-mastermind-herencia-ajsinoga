@@ -2,69 +2,40 @@
 
 public class Result {
 
-    private static final int BLACK = 1;
-    private static final int WHITE = 0;
-    private int[] results;
-    private SecretCombination secretCombination;
+    private int blacks;
+    private int whites;
 
-    public Result(SecretCombination secretCombination) {
-        this.results = new int[] { -1, -1, -1, -1 };
-        this.secretCombination = secretCombination;
+    public Result() {        
+        this.blacks = 0;
+        this.whites = 0;
     }
 
-	public void verify(ProposedCombination proposedCombination) {
-        for (int i = 0; i < this.secretCombination.size(); i++) {
-            Color currentGoal = this.secretCombination.colors[i];
-            for (int j = 0; j < proposedCombination.size(); j++) {
+	public void verify(SecretCombination secretCombination, ProposedCombination proposedCombination) {
+        for (int i = 0; i < Combination.size(); i++) {
+            Color currentGoal = secretCombination.colors[i];
+            for (int j = 0; j < Combination.size(); j++) {
                 if (proposedCombination.colors[j] == currentGoal) {
                     if (i == j) {
-                        this.addBlackBall(i); 
+                        this.blacks++; 
                         break;
                     } 
                     else {
-                        this.addWhiteBall(i); 
+                        this.whites++; 
                     }                   
                 }
             }
         }
     }
 
-    private void addBlackBall(int position) {
-        this.results[position] = BLACK;
-    }
-
-	private void addWhiteBall(int position) {
-        this.results[position] = WHITE;
-    }
-
-    private int size() {
-        return this.results.length;
-    }
-
     public boolean isWinner() {
-        Console console = new Console();
-        if (this.numberOfHints(BLACK) == this.size()) {
-            console.out("You've won!!! ;-)\n");
-            return true;
-        }
-        return false;
+        return this.blacks == Combination.size();
 	}
 
 	public int numberOfBlacks() {
-		return numberOfHints(BLACK);
+		return this.blacks;
 	}
 
 	public int numberOfWhites() {
-		return numberOfHints(WHITE);
-    }
-    
-    private int numberOfHints(int color) {
-        int result = 0;
-        for (int i = 0; i < this.size(); i++) {
-            if (results[i] == color) {
-                result++;
-            }
-        }
-        return result;
-    }
+		return this.whites;
+    }    
 }

@@ -5,7 +5,8 @@ class SecretCombination extends Combination {
     private final Color[] ALLOWEDCOLORS = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.PINK, Color.ORANGE}; 
 
 	public SecretCombination() {
-        super();        
+        super();    
+        super.propose();    
     }
 
     @Override

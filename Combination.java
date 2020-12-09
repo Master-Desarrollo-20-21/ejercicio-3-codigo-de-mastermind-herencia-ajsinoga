@@ -1,20 +1,20 @@
 
 abstract class Combination {
 
-    private final int NUMBEROFCOLORS = 4;
+    private static final int NUMBEROFCOLORS = 4;
     protected Color[] colors;
 
 	public Combination() {
         colors = new Color[NUMBEROFCOLORS];
     }
 
-    public int size() {
-        return this.colors.length;
+    public static int size() {
+        return NUMBEROFCOLORS;
     }
     
     public String show () {
         String combination = "";
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < NUMBEROFCOLORS; i++) {
             combination += colors[i].getColor();						            
         }
         return combination;
@@ -32,7 +32,7 @@ abstract class Combination {
     public abstract String generate();
 
     public void saveCombination(String proposal) {
-        for (int i = 0; i < this.size(); i++) {
+        for (int i = 0; i < NUMBEROFCOLORS; i++) {
             this.colors[i] = Color.valueOf(proposal.charAt(i));
         }
     }    
@@ -49,7 +49,7 @@ abstract class Combination {
 
     private boolean isValidLength(int length) {
         Console console = new Console();
-        if (length != this.size()) {
+        if (length != NUMBEROFCOLORS) {
             console.out("Wrong proposed combination length\n");
             return false;
         }
@@ -66,4 +66,9 @@ abstract class Combination {
         }
         return true;
     }
+
+    // public boolean compareColorAtPosition(Combination combination, int position)
+    // {
+    //     return this.colors[position] == combination.colors[position];
+    // }
 }
