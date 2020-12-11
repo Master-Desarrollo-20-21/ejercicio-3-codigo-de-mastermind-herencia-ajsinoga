@@ -18,7 +18,7 @@ class SecretCombination extends Combination {
             if (isUnique(candidate, proposal)) {
                 proposal = proposal + candidate.getColor();
             }                
-        } while (proposal.length() != this.size());
+        } while (proposal.length() != Combination.size());
 
         return proposal;
     }

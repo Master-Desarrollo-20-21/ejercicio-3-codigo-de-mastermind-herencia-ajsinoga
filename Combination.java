@@ -66,9 +66,4 @@ abstract class Combination {
         }
         return true;
     }
-
-    // public boolean compareColorAtPosition(Combination combination, int position)
-    // {
-    //     return this.colors[position] == combination.colors[position];
-    // }
 }
